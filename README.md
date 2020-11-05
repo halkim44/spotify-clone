@@ -47,12 +47,11 @@ This project requires [node](https://nodejs.org/) and [npm](https://www.npmjs.co
 
 ### Installing
 
-Open a terminal inside the directory created after following the [Getting Started](#getting_started)
+Open a terminal inside the directory created after following the steps in [Getting Started](#getting_started) section and type the commands bellow
 
 ```
 yarn install
 yarn start
-
 ```
 
 ## 🔧 Running the tests <a name = "tests"></a>

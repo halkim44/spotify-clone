@@ -1,0 +1,20 @@
+
+
+
+Get most Popular tracks:
+  ☐ learn how to use Spotify API to get most popular tracks
+  ☐ code the front-end for displaying the popular tracks
+  ☐ display artist and song name only
+
+Authorization server:
+  ✔ learn about spotify's authorization flow @done(20-11-04 23:03)
+  ☐ setup a node.js server with express
+  ☐ login request
+  ☐ redirect uri request
+  ☐ refresh token request
+  ☐ logout request
+
+Authorization Client:
+  ☐ display login button
+  ☐ login button will redirect to spotify official account handler
+  ☐ TEST: display user Info after login(name and icon)
