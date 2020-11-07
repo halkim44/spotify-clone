@@ -3,7 +3,9 @@ import "./App.css";
 function App() {
   return (
     <div className="App">
-      <button>Login</button>
+      <a href="/login">
+        <button>Login</button>
+      </a>
     </div>
   );
 }

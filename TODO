@@ -1,4 +1,5 @@
-
+Server-side rendering React:
+  ✘ learn how to create a SSR app with react @cancelled(20-11-07 19:53)
 
 
 Get most Popular tracks:
@@ -8,11 +9,11 @@ Get most Popular tracks:
 
 Authorization server:
   ✔ learn about spotify's authorization flow @done(20-11-04 23:03)
-  ☐ setup a node.js server with express
-  ☐ login request
-  ☐ redirect uri request
-  ☐ refresh token request
-  ☐ logout request
+  ✔ setup a node.js server with express @done(20-11-05 22:22)
+  ✔ login request @started(20-11-05 22:22) @done(20-11-07 19:53) @lasted(1d21h31m41s)
+  ☐ create redirect uri for login request
+  ☐ create refresh token request handler
+  ☐ create logout request handler
 
 Authorization Client:
   ☐ display login button
