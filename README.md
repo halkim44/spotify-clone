@@ -57,7 +57,7 @@ yarn start
 ## 🔧 Running the tests <a name = "tests"></a>
 
 ```
-yarn test
+yarn run test
 ```
 
 ## 🚀 Deployment <a name = "deployment"></a>
