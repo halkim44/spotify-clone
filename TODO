@@ -1,21 +1,44 @@
 Server-side rendering React:
   ✘ learn how to create a SSR app with react @cancelled(20-11-07 19:53)
 
+Authorization in Client:
+  ✔ setup routes using react-router @started(20-11-08 22:39) @done(20-11-09 18:16) @lasted(19h37m53s)
+  ✔ direct user to login site @done(20-11-08 23:37)
+  ✘ after login was successful redirect user to /authorize-user/ @cancelled(20-11-08 23:37)
+  ✔ get accesstoken in the hash url @started(20-11-09 18:16) @done(20-11-09 19:58) @lasted(1h42m49s)
+  ✔ keep token data in localStorage securely @done(20-11-09 20:24)
+  ✔ redirect user to home @done(20-11-09 20:24)
 
-Get most Popular tracks:
-  ☐ learn how to use Spotify API to get most popular tracks
-  ☐ code the front-end for displaying the popular tracks
-  ☐ display artist and song name only
+Top content:
+  ✔ get User Data from spotify API @done(20-11-09 23:56)
+  ✔ display login button @done(20-11-10 23:42)
+  if user is login
+  ✔ display forward and back button @started(20-11-10 23:52) @done(20-11-11 18:33) @lasted(18h41m3s)
+  ✔ display user Picture @done(20-11-12 18:18)
+  ✔ display user name @done(20-11-12 18:18)
+  ✔ style the position of the elements inside @done(20-11-12 18:18)
 
-Authorization server:
+MainContent:
+  ✔ setup the react router logic which display the pages based url @done(20-11-14 09:30)
+  ✔ profile page @started(20-11-14 09:30) @done(20-11-14 19:43) @lasted(10h13m19s)
+  Authorization server:
   ✔ learn about spotify's authorization flow @done(20-11-04 23:03)
   ✔ setup a node.js server with express @done(20-11-05 22:22)
-  ✔ login request @started(20-11-05 22:22) @done(20-11-07 19:53) @lasted(1d21h31m41s)
-  ☐ create redirect uri for login request
-  ☐ create refresh token request handler
-  ☐ create logout request handler
+  ✔ login request @started(20-11-05 22:22) @done(20-11-12 23:09) @lasted(1w47m19s)
+  ✔ create redirect uri for login request @done(20-11-12 23:09)
 
-Authorization Client:
-  ☐ display login button
-  ☐ login button will redirect to spotify official account handler
-  ☐ TEST: display user Info after login(name and icon)
+  ✔ create refresh token request handler @done(20-11-12 23:09)
+  ✔ create logout request handler @started(20-11-13 00:03) @done(20-11-15 11:02) @lasted(2d10h59m26s)
+
+Features to add:
+  ✘ setup privateRoute where user wil be suggested to login and page will not make an http request @cancelled(20-11-15 20:30)
+  ✔ Finish the Profile Page @done(20-11-15 20:30)
+  ✔ home page @done(20-11-16 19:14)
+  ✔ sidebar @started(20-11-16 19:56) @done(20-11-20 19:39) @lasted(3d23h43m5s)
+  ✔ music player @started(20-11-20 19:40) @done(20-11-24 23:18) @lasted(4d3h38m22s)
+  ✔ play music button on card @started(20-11-25 19:48) @done(20-11-25 21:08) @lasted(1h20m15s)
+  ✔ artist page @started(20-11-25 21:08) @done(20-11-28 23:10) @lasted(3d2h2m59s)
+  ☐ album page
+  ☐ playlist page
+  ☐ search page
+  ☐ queue page

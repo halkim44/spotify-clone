@@ -30,6 +30,47 @@ App
 .
 ...
 
+### User Page
+
+.container
+--header
+----.profileImg
+----.userDescription
+--main
+----.publicPlaylist
+------.cards
+--------.card
+----.Following
+------.cards
+--------.card
+
+### SideBar
+
+.left-container
+--nav.sidebar
+----Logo
+----ul.navList
+------li
+--------a.Link[react-router]
+-------- . . .
+----.user-playlists-container
+------.horizontal-line
+------ul
+--------li
+----------Link
+
+## playing music
+
+### Displaying currently playing music
+
+getdata
+|
+|
+|
+|
+|
+V
+
 ## Pages
 
 /

@@ -21,11 +21,10 @@
 
 - [About](#about)
 - [Getting Started](#getting_started)
+- [Features](#features)
 - [Deployment](#deployment)
 - [Usage](#usage)
 - [Built Using](#built_using)
-- [TODO](../TODO.md)
-- [Contributing](../CONTRIBUTING.md)
 - [Authors](#authors)
 - [Acknowledgments](#acknowledgement)
 
@@ -53,6 +52,26 @@ Open a terminal inside the directory created after following the steps in [Getti
 yarn install
 yarn start
 ```
+
+## 🤖 Features <a name = "features"></a>
+
+This project was created for learning purposes so it doesn't have all the features from the original due to some of the features are not included in the [spotify api](https://developer.spotify.com/documentation/web-api/reference-beta/) and also because I dont really want to spend more time on this project, so I only focus on music playing and library browsing features.
+
+users will be able to :
+
+- login and logout to their account
+- play music and control music player
+- search for Playlists, Artists, Albums and tracks
+- like and unlike a Playlists, Artists, Albums and tracks
+- browse his/her's library
+- follow artist
+
+users are unable to :
+
+- edit their profile data
+- view other user's music library
+- follow other users
+- create playlists
 
 ## 🔧 Running the tests <a name = "tests"></a>
 
