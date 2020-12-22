@@ -54,7 +54,7 @@ export const Album = () => {
             <ListHeader noAlbumInfo />
             {albumData.tracks.items.map((track, i) => (
               <>
-                <List trackData={track} num={i} noAlbumInfo />
+                <List trackData={track} num={i} noAlbumInfo key={i} />
               </>
             ))}
             {!!moreAlbum && (

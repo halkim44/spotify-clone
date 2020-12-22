@@ -3,7 +3,7 @@ import { Route, useLocation, useParams, useRouteMatch } from "react-router-dom";
 import { PlayTools } from "../components/common/playTools";
 import { SeeAllRouteHandler } from "./see-alls/SeeAllRouteHandler";
 import { Contents } from "../components/layout/main/Contents";
-import { PopularList } from "../components/layout/main/PopularList";
+import { PopularSongList } from "../components/layout/main/PopularSongList";
 import { SectionsOfCards } from "../components/layout/main/SectionOfCards";
 import {
   getArtist,
@@ -37,18 +37,15 @@ export const Artist = () => {
   }, [artistId]);
   return (
     <div>
-      {console.log(artistData)}
-
       <Route exact path={url}>
         {!!artistData.name ? (
           <>
             <Header>
               <ArtistHeader data={artistData} />
             </Header>
-            {console.log(artistData)}
             <Contents>
               <PlayTools uri={artistData.uri} />
-              <PopularList artistId={artistId} />
+              <PopularSongList artistId={artistId} />
               <SectionsOfCards
                 title="Discography"
                 artistID={artistId}

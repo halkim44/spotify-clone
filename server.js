@@ -49,6 +49,9 @@ app.get("/auth/login", function (req, res) {
     "user-modify-playback-state",
     "user-read-playback-state",
     "user-read-currently-playing",
+    "user-follow-modify",
+    "user-library-read",
+    "playlist-read-private",
   ];
   res.redirect(
     "https://accounts.spotify.com/authorize?" +
@@ -103,6 +106,7 @@ app.get("/auth/callback", function (req, res) {
     };
 
     request.post(authOptions, function (error, response, body) {
+      console.log(error);
       if (!error && response.statusCode === 200) {
         var access_token = body.access_token,
           refresh_token = body.refresh_token;

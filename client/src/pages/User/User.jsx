@@ -1,24 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useRouteMatch } from "react-router-dom";
+
 import { useUserDataState } from "../../contexts/userData";
-import styled from "@emotion/styled";
+
 import { Contents } from "../../components/layout/main/Contents";
 import { CardGroup } from "../../components/common/CardGroup";
 import { Card } from "../../components/common/Card";
-import { spotifyApi } from "../../api/spotify";
 import { UserHeader } from "../../components/layout/main/Header/UserHeader";
 import { Header } from "../../components/layout/main/Header/Header";
 
-const Container = styled.div``;
+import { getAllGenerator } from "../../services/generators";
+import { getCurrentUserPlaylists } from "../../services/spotify/playlist";
+import { getCurrentUserFollowed } from "../../services/spotify/follow";
+import { getUserData } from "../../services/spotify/user";
 
-const CardTest = styled.div`
-  height: 100px;
-  width: 100%;
-  background-color: blue;
-`;
 export const User = () => {
   const currentUserData = useUserDataState().data;
-  const [data, setData] = useState(null);
+  const [data, setData] = useState({ followig: null, playlists: null });
   const { id } = useParams();
   const { url } = useRouteMatch();
 
@@ -26,8 +24,7 @@ export const User = () => {
     if (currentUserData.id === id) {
       setData(currentUserData);
     } else {
-      spotifyApi
-        .get(`/users/${id}`)
+      getUserData(id)
         .then((res) => {
           setData(res.data);
         })
@@ -38,50 +35,45 @@ export const User = () => {
   }
   useEffect(() => {
     if (data && !data.following) {
-      Promise.all([
-        spotifyApi.get("/me/following", {
-          params: {
-            type: "artist",
-            limit: 8,
-          },
-        }),
-        spotifyApi.get("me/playlists", {
-          params: {
-            limit: 8,
-          },
-        }),
-      ])
+      getCurrentUserFollowed(8)
         .then((res) => {
-          setData({
-            ...data,
-            following: res[0].data.artists,
-            playlists: res[1].data,
-          });
+          setData((prev) => ({
+            ...prev,
+            following: res.data.artists,
+          }));
         })
         .catch((err) => console.log(err));
     }
-  }, [data]);
+    getAllGenerator(
+      (offset, limit) =>
+        getCurrentUserPlaylists(limit, offset).catch((err) => console.log(err)),
+      (dataCol) => {
+        setData((prev) => ({
+          ...prev,
+          playlists: dataCol.filter((el) => el.owner.id === currentUserData.id),
+        }));
+      }
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentUserData]);
 
   return (
-    <Container>
-      {data && !!data.following && (
+    <div>
+      {!!data.following && !!data.playlists && (
         <>
-          <Header
-          // displayName={data.display_name}
-          // imageUrl={data.images[0].url}
-          // followingTotal={data.following.total}
-          // followerTotal={data.followers.total}
-          // playlistTotal={!!data.playlists && data.playlists.total}
-          >
+          {console.log(data)}
+          <Header>
             <UserHeader data={data} />
           </Header>
           <Contents>
-            <CardGroup title="Public Playlist" seeAllLink={`${url}/playlists`}>
-              {!!data.playlists &&
-                data.playlists.items.map((playlist, i) => (
-                  <Card data={playlist} type="playlist" key={i} />
-                ))}
-            </CardGroup>
+            {/* <CardGroup title="Public Playlist" seeAllLink={`${url}/playlists`}>
+              {data.playlists.map(
+                (playlist, i) =>
+                  i < 8 && (
+                    <Card data={playlist} type="playlist" key={i} hideSubs />
+                  )
+              )}
+            </CardGroup> */}
             <CardGroup title="Following" seeAllLink={`${url}/following`}>
               {data.following.items.map((artist, i) => (
                 <Card data={artist} type="artist" key={i} />
@@ -90,6 +82,6 @@ export const User = () => {
           </Contents>
         </>
       )}
-    </Container>
+    </div>
   );
 };

@@ -66,7 +66,6 @@ export const AlbumHeader = ({ data }) => {
 
   subtitles.push(releaseYear);
   subtitles.push(tracksInfo);
-  console.log(data);
   return (
     <Container>
       <ProfileImg>

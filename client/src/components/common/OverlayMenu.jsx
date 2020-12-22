@@ -36,10 +36,12 @@ export const OverlayMenu = ({ list }) => {
         {list.map(({ name, link, exec }, i) => (
           <ListItem key={i}>
             {exec ? (
-              <ButtonStyled onClick={exec}>{name}</ButtonStyled>
+              <ButtonStyled onClick={exec} aria-label={`${name}`}>
+                {name}
+              </ButtonStyled>
             ) : (
               <Link to={link}>
-                <ButtonStyled>{name}</ButtonStyled>
+                <ButtonStyled aria-label={`${name}`}>{name}</ButtonStyled>
               </Link>
             )}
           </ListItem>

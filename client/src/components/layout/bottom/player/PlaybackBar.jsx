@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
+
 import { seek } from "../../../../services/spotify/player";
 import { Slider } from "../../../common/Slider";
 import { getMMSSfromMilisec } from "../../../../utils/spotifyHelper";

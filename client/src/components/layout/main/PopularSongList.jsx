@@ -17,7 +17,7 @@ const SeeMoreBtn = styled.button`
   }
 `;
 
-export const PopularList = ({ artistId }) => {
+export const PopularSongList = ({ artistId }) => {
   const userMarket = useUserDataState().data.country;
   const [topTracks, setTopTracks] = useState([]);
   const [numOfListToDisplay, setNumOfListToDisplay] = useState(5);
@@ -33,7 +33,7 @@ export const PopularList = ({ artistId }) => {
       <ul>
         {topTracks.map(
           (track, i) =>
-            i < numOfListToDisplay && <List trackData={track} num={i} />
+            i < numOfListToDisplay && <List trackData={track} num={i} key={i} />
         )}
       </ul>
       <SeeMoreBtn
@@ -44,6 +44,7 @@ export const PopularList = ({ artistId }) => {
             setNumOfListToDisplay(5);
           }
         }}
+        aria-label="see more popular songs"
       >
         {numOfListToDisplay === 5 ? "SEE MORE" : "SHOW LESS"}
       </SeeMoreBtn>

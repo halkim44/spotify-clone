@@ -108,7 +108,7 @@ export const UserDropDown = () => {
         isActive={showList}
         ref={pillRef}
       >
-        <ButtonStyled>
+        <ButtonStyled aria-label="user options">
           <Figure>
             <img src={userData.images[0].url} alt="" />
           </Figure>

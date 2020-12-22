@@ -23,53 +23,10 @@ const BackgroundReflection = styled.div`
   top: 100%;
 `;
 
-export const Header = ({
-  displayName,
-  imageUrl,
-  followingTotal,
-  followerTotal,
-  playlistTotal,
-  about = "user",
-  children,
-}) => {
+export const Header = ({ about = "user", children }) => {
   return (
     <Container about={about}>
-      <div className="Header-content">
-        {children}
-        {/*         
-        <div className="Header-img-wrapper">
-          <img
-            src={imageUrl}
-            alt={displayName + "'s profile pic"}
-            height="100%"
-            width="auto"
-          />
-        </div>
-        <div className="Header-header-text-content">
-          <h2 className="Header-about-title">
-            {about === "user" ? "PROFILE" : about.toUpperCase()}
-          </h2>
-          <h1 className="Header-display-name">{displayName}</h1>
-
-          {(followingTotal || followerTotal || playlistTotal) && (
-            <p className="Header-subtitle">
-              {!!playlistTotal && (
-                <span>
-                  {playlistTotal + " Public Playlist"}
-                  {playlistTotal > 1 && "s"}
-                </span>
-              )}
-              {!!followerTotal && (
-                <span>
-                  {followerTotal + " Follower"}
-                  {followerTotal > 1 && "s"}
-                </span>
-              )}
-              {followingTotal && <span>{followingTotal + " Following"}</span>}
-            </p>
-          )}
-        </div> */}
-      </div>
+      <div className="Header-content">{children}</div>
       <BackgroundReflection />
     </Container>
   );

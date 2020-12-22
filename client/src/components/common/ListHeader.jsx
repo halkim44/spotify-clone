@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const Container = styled.div`
   display: grid;
@@ -7,7 +7,6 @@ const Container = styled.div`
   border-bottom: 1px solid hsla(0, 0%, 100%, 0.1);
   padding: 6px 24px;
   grid-gap: 16px;
-  margin-top: 16px;
   > * {
     color: #b3b3b3;
   }
@@ -23,14 +22,26 @@ const Container = styled.div`
 const Album = styled.div`
   text-align: left;
 `;
+
+const Filler = styled.div``;
+const TopIndicator = styled.div`
+  margin: 0;
+  margin-bottom: 20px;
+  padding: 0;
+  height: 35px;
+`;
 export const ListHeader = ({ noAlbumInfo }) => {
   return (
-    <Container>
-      <div>#</div>
-      <div>TITLE</div>
+    <>
+      <TopIndicator className="sticky-sensor">
+        <Container className={"sticky-list-header"}>
+          <div>#</div>
+          <div>TITLE</div>
 
-      <Album>{!noAlbumInfo && "ALBUM"}</Album>
-      <div>Time</div>
-    </Container>
+          <Album>{!noAlbumInfo && "ALBUM"}</Album>
+          <div>Time</div>
+        </Container>
+      </TopIndicator>
+    </>
   );
 };

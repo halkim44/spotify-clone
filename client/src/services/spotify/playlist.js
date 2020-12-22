@@ -18,3 +18,17 @@ export const getPlaylistItems = (id, fields, limit, offset, additional_types) =>
       additional_types,
     },
   });
+export const getUserPlaylists = (userId, limit, offset) =>
+  spotifyApi.get("/users/" + userId + "/playlists", {
+    params: {
+      limit,
+      offset,
+    },
+  });
+export const getCurrentUserPlaylists = (limit, offset) =>
+  spotifyApi.get("/me/playlists", {
+    params: {
+      limit,
+      offset,
+    },
+  });

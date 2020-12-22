@@ -1,6 +1,7 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Card } from "../../components/common/Card";
 import { CardGroup } from "../../components/common/CardGroup";
+import { getAllGenerator } from "../../services/generators";
 import { getArtistAlbums } from "../../services/spotify/artists";
 
 export const Discography = ({ id }) => {
@@ -8,59 +9,12 @@ export const Discography = ({ id }) => {
   const [singles, setSingles] = useState([]);
   const [compilations, setCompilations] = useState([]);
 
-  const discographyDataGenerator = useCallback(
-    (callback, discogArray = [], logs = null) => {
-      function* getFullDiscography(offset = 0, limit = 50) {
-        while (true) {
-          console.log(offset);
-          yield getArtistAlbums(
-            id,
-            "album,single,compilation",
-            "My",
-            limit,
-            offset
-          ).then(
-            // eslint-disable-next-line no-loop-func
-            (res) => {
-              const { data } = res;
-
-              console.log(offset);
-              if (!!data.items.length) {
-                return data.items;
-              } else {
-                return null;
-              }
-            }
-          );
-          offset += limit;
-        }
-      }
-      if (!logs) {
-        logs = getFullDiscography();
-      }
-
-      const next = logs.next();
-
-      next.value.then((data) => {
-        if (data) {
-          console.log(data);
-          discogArray = discogArray.concat(data);
-          discographyDataGenerator(callback, discogArray, logs);
-        } else {
-          callback(discogArray);
-        }
-      });
-    },
-    [id]
-  );
-
   function sortArray(data) {
     let albumFiltered = [];
     let singleFiltered = [];
     let compilationFiltered = [];
 
     data.forEach((el) => {
-      console.log(el.album_type === "album");
       if (el.album_type === "album") {
         albumFiltered.push(el);
       } else if (el.album_type === "single") {
@@ -74,14 +28,15 @@ export const Discography = ({ id }) => {
     setCompilations(compilationFiltered);
   }
   useEffect(() => {
-    discographyDataGenerator(sortArray);
-  }, [discographyDataGenerator]);
+    getAllGenerator(
+      (offset, limit) =>
+        getArtistAlbums(id, "album,single,compilation", "My", limit, offset),
+      sortArray
+    );
+  }, [id]);
 
   return (
     <div>
-      {console.log(albums)}
-      {console.log(singles)}
-      {console.log(compilations)}
       {!!albums.length && (
         <CardGroup title="Albums" freeHeight>
           {albums.map((album, i) => (

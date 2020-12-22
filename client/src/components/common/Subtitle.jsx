@@ -15,8 +15,8 @@ const SubtitleStyled = styled.p`
 export const Subititle = ({ arrayOfText }) => {
   return (
     <SubtitleStyled>
-      {arrayOfText.map((text) => (
-        <span>{text}</span>
+      {arrayOfText.map((text, i) => (
+        <span key={i}>{text}</span>
       ))}
     </SubtitleStyled>
   );

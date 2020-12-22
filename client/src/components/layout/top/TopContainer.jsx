@@ -1,8 +1,10 @@
 import styled from "@emotion/styled";
-import React from "react";
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-
+import React, { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { Button } from "../../common/Button";
+import { CollectionsNav } from "./CollectionsNav";
+import { HistoryManager } from "./HistoryManager";
+import { SearchBar } from "./SearchBar";
 import { UserDropDown } from "./UserDropdown";
 const Container = styled.div`
   padding: 12px 32px;
@@ -17,42 +19,27 @@ const Container = styled.div`
   margin-left: 232px; // FOR SIDEBAR
 `;
 
-const CircleButton = styled.button`
-  background: #000;
-  color: #fff;
-  border-radius: 50%;
-  padding: 4px;
-  > svg {
-    display: block;
-    width: 26px;
-    height: 26px;
-  }
-`;
-
-const BackForwardBtnContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 80px;
-`;
-
 const LeftContent = styled.div``;
+const MiddleContent = styled.div`
+  flex: 1;
+`;
 
-export const TopContainer = ({ isUserAuthenticated }) => {
+export const TopContainer = ({ isUserAuthenticated, location }) => {
+  const { pathname } = useLocation();
   return (
     <Container className="top-container">
-      <BackForwardBtnContainer>
-        <CircleButton data-testid="back-btn">
-          <IoIosArrowBack />
-        </CircleButton>
-        <CircleButton data-testid="forward-btn">
-          <IoIosArrowForward />
-        </CircleButton>
-      </BackForwardBtnContainer>
+      <HistoryManager />
+      <MiddleContent>
+        {/^\/search/.test(pathname) && <SearchBar />}
+        {/^\/collection/.test(pathname) && <CollectionsNav />}
+      </MiddleContent>
       <LeftContent>
         {isUserAuthenticated ? (
           <UserDropDown />
         ) : (
-          <Button to="/auth/login">LOG IN</Button>
+          <Button to="/auth/login" aria-label="login">
+            LOG IN
+          </Button>
         )}
       </LeftContent>
     </Container>

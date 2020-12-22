@@ -1,10 +1,10 @@
-import LocalStorageService from "./localStorageService";
+import { tokenLocalStorageService } from "../utils/localStorageService";
 
 export const loginUser = (tokenObject) => {
-  LocalStorageService.setToken(tokenObject);
+  tokenLocalStorageService.setToken(tokenObject);
 };
 
 export const logoutUser = () => {
-  LocalStorageService.clearToken();
+  tokenLocalStorageService.clearToken();
   document.location.reload();
 };

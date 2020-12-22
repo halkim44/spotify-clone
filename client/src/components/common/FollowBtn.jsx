@@ -15,5 +15,5 @@ const StyledBtn = styled.button`
 `;
 
 export const FollowBtn = ({ uri }) => {
-  return <StyledBtn>FOLLOW</StyledBtn>;
+  return <StyledBtn aria-label="follow-button">FOLLOW</StyledBtn>;
 };

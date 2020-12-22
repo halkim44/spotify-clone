@@ -4,7 +4,7 @@ import { useUserDataDispatch, useUserDataState } from "../contexts/userData";
 import { loginUser } from "../services/auth";
 import { checkHashContains, getHashParams } from "../utils/hash";
 import { spotifyApi } from "../api/spotify";
-import LocalStorageService from "../services/localStorageService";
+import { tokenLocalStorageService } from "../utils/localStorageService";
 
 export const ManageData = ({ children }) => {
   const updateUserData = useUserDataDispatch();
@@ -19,7 +19,7 @@ export const ManageData = ({ children }) => {
 
   let { data } = useUserDataState();
   useEffect(() => {
-    if (LocalStorageService.getAccessToken()) {
+    if (tokenLocalStorageService.getAccessToken()) {
       if (data === null) {
         spotifyApi
           .get("/me")
@@ -32,6 +32,7 @@ export const ManageData = ({ children }) => {
     } else {
       setDisplayLoading(false);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

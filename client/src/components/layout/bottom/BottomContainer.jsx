@@ -1,15 +1,12 @@
 import styled from "@emotion/styled";
 import React, { useState } from "react";
-import LocalStorageService from "../../../services/localStorageService";
 import { SdkIntializer } from "./player/SdkInitializer";
-import {
-  getCurrentPlayback,
-  transferUsersPlayback,
-} from "../../../services/spotify/player";
+import { transferUsersPlayback } from "../../../services/spotify/player";
 import { CurrentPlayingInfo } from "./player/CurrentPlayingInfo";
 import { Controls } from "./player/Controls";
 import { PlaybackBar } from "./player/PlaybackBar";
 import { ExtraControls } from "./player/ExtraControls";
+import { tokenLocalStorageService } from "../../../utils/localStorageService";
 
 const Container = styled.div`
   position: fixed;
@@ -41,7 +38,6 @@ const Right = styled.div`
   align-items: center;
 `;
 
-const RightContentWrapper = styled;
 export const BottomContainer = () => {
   const [playback, setPlayback] = useState({
     position: null,
@@ -62,12 +58,12 @@ export const BottomContainer = () => {
   };
 
   const currentTrack = playback.track_window.current_track;
-
   return (
     <>
+      {console.log(playback)}
       {!sdkIsAlreadyInit && (
         <SdkIntializer
-          token={LocalStorageService.getAccessToken()}
+          token={tokenLocalStorageService.getAccessToken()}
           setId={setID}
           onPlayerStateChange={(state) => {
             setPlayback({ ...playback, ...state });
@@ -106,10 +102,7 @@ export const BottomContainer = () => {
           />
         </Middle>
         <Right>
-          <ExtraControls
-            // volume={playback.device.volume_percent}
-            deviceId={deviceId}
-          />
+          <ExtraControls deviceId={deviceId} />
         </Right>
       </Container>
     </>

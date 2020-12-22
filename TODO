@@ -38,7 +38,38 @@ Features to add:
   ✔ music player @started(20-11-20 19:40) @done(20-11-24 23:18) @lasted(4d3h38m22s)
   ✔ play music button on card @started(20-11-25 19:48) @done(20-11-25 21:08) @lasted(1h20m15s)
   ✔ artist page @started(20-11-25 21:08) @done(20-11-28 23:10) @lasted(3d2h2m59s)
-  ☐ album page
-  ☐ playlist page
-  ☐ search page
-  ☐ queue page
+  ✔ album page @done(20-11-30 19:40)
+  ✔ playlist page @done(20-11-30 19:40)
+  ✔ search page (show albums, artists, and playlists only) @started(20-12-01 19:40) @done(20-12-02 19:30) @lasted(23h50m21s)
+  ✔ collections page @done(20-12-08 19:39)
+  ✔ recommended search page @done(20-12-09 00:01)
+  ✘ queue page @cancelled(20-12-09 22:50)
+
+Fixings: 
+  ✔ back forward button (page history) @done(20-12-03 23:40)
+  ✔ navbar highlighter @done(20-12-03 23:44)
+  ✔ factorize list component @done(20-12-06 21:56)
+  ✔ factorize header component @done(20-12-09 23:05)
+  ✘ create a new big card @cancelled(20-12-06 21:56)
+  ✔ topContainer background darken when user is scrolling down @started(20-12-12 19:23) @done(20-12-12 20:00) @lasted(37m27s)
+  ✔ make the listheader sticky @done(20-12-12 20:00)
+  ✔ create a custom spotify slider/scrollbar @done(20-12-10 23:25)
+  ✘ show a skeleton of lists while user is waiting for the data to finish fetching @cancelled(20-12-10 23:46)
+  ✔ tell user that the playlist is still loading songs when @done(20-12-10 23:46)
+  ✔ collection placeholder page when there is no data @done(20-12-11 20:58)
+  ✔ save volume percentage in localStorage @done(20-12-10 22:48)
+  ✘ the music player placeholder when user is not login @cancelled(20-12-11 19:00)
+  ✔ playlist List in sidebar @done(20-12-11 23:17)
+  ✔ login suggestion page @done(20-12-12 00:24)
+  ✔ noMatch page @done(20-12-12 20:08)
+  ✔ tell user that he/she must be premium to play music @done(20-12-12 20:01)
+  ☐ enlarge currently playing track album cover
+  ☐ display liked/saved songs
+
+
+  finishing up:
+    ✔ firehouse testing on accessibility @done(20-12-16 22:16)
+    ☐ integration testing @started(20-12-16 22:16)
+    ☐ e2e testing
+    ☐ README UPDATE
+    ☐ deploy to heroku

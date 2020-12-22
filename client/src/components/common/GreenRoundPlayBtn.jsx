@@ -22,7 +22,6 @@ const Container = styled.div`
 export const GreenRoundPlayBtn = ({ uri }) => {
   return (
     <Container onClick={() => play(uri)}>
-      {console.log(uri)}
       <MdPlayArrow />
     </Container>
   );

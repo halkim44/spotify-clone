@@ -40,23 +40,25 @@ const Container = styled.div`
 `;
 export const UserHeader = ({ data }) => {
   const subtitles = [];
-
-  if (!!data.playlists.total) {
+  console.log(data);
+  if (!!data.playlists.length) {
     subtitles.push(
-      data.playlists.total +
+      data.playlists.length +
         " Public Playlist" +
-        (data.playlists.total > 1 ? "s" : "")
+        (data.playlists.length > 1 ? "s" : "")
     );
   }
 
   if (!!data.followers.total) {
     subtitles.push(
-      data.followers.total + " Follower" + (data.playlists.total > 1 ? "s" : "")
+      data.followers.total +
+        " Follower" +
+        (data.playlists.length > 1 ? "s" : "")
     );
   }
 
   if (!!data.following.total) {
-    subtitles.push(data.playlists.total + " Following");
+    subtitles.push(data.following.total + " Following");
   }
   return (
     <Container>
@@ -66,6 +68,7 @@ export const UserHeader = ({ data }) => {
           alt={data.display_name + "'s profile pic"}
           height="100%"
           width="auto"
+          data-testid="user-page-profile-img"
         />
       </ProfileImg>
       <TextContent>

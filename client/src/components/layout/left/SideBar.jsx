@@ -3,10 +3,9 @@ import React, { useCallback, useEffect, useState } from "react";
 import { ImSpotify } from "react-icons/im";
 import { VscHome } from "react-icons/vsc";
 import { IoIosSearch } from "react-icons/io";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 const Container = styled.nav`
   width: 100%;
-  height: 100%;
   margin-top: 24px;
 `;
 const LogoWrapper = styled.div`
@@ -30,16 +29,19 @@ const LogoName = styled.span`
   margin-top: -3px;
 `;
 const NavClickable = styled.div`
-  padding: 0 16px;
+  padding: 4px 16px;
   opacity: 0.7;
   transition: opacity 0.2s ease, background-color 0.2s ease;
+  border-radius: 4px;
+  font-weight: 600;
   &:hover {
     opacity: 1;
   }
   ${({ isActive }) =>
     isActive &&
     `
-  background-color: yellow;
+  background-color: #282828;
+  opacity: 1;
 
   `}
 `;
@@ -85,12 +87,14 @@ export const Sidebar = () => {
     },
   ];
 
+  const appHistory = useHistory();
+
   const getStatusBasedOnPathname = (str) => {
-    const cleanStr = str.split("/")[1];
-    if (!cleanStr.length) {
+    if (str === "/") {
       return str === pathname;
     }
-    return pathname.includes(cleanStr);
+    const re = new RegExp("^\\" + str);
+    return re.test(pathname);
   };
 
   return (
@@ -109,14 +113,17 @@ export const Sidebar = () => {
       <NavList>
         {navs.map((nav, i) => (
           <li key={i}>
-            <Link to={nav.to}>
-              <NavClickable isActive={getStatusBasedOnPathname(nav.to)}>
-                <IconAndTextAligner>
-                  <IconWrapper>{nav.icon}</IconWrapper>
-                  <LinkName>{nav.name}</LinkName>
-                </IconAndTextAligner>
-              </NavClickable>
-            </Link>
+            <NavClickable
+              isActive={getStatusBasedOnPathname(nav.to)}
+              onClick={() =>
+                !getStatusBasedOnPathname(nav.to) && appHistory.push(nav.to)
+              }
+            >
+              <IconAndTextAligner>
+                <IconWrapper>{nav.icon}</IconWrapper>
+                <LinkName>{nav.name}</LinkName>
+              </IconAndTextAligner>
+            </NavClickable>
           </li>
         ))}
       </NavList>

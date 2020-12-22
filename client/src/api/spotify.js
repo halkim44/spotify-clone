@@ -1,5 +1,5 @@
 import axios from "axios";
-import LocalStorageService from "../services/localStorageService";
+import { tokenLocalStorageService } from "../utils/localStorageService";
 
 export const spotifyApi = axios.create({
   baseURL: "https://api.spotify.com/v1",
@@ -11,7 +11,7 @@ spotifyApi.interceptors.request.use(
   (config) => {
     config.headers.common["Content-Type"] = "application/json";
 
-    const token = LocalStorageService.getAccessToken();
+    const token = tokenLocalStorageService.getAccessToken();
     if (token) {
       config.headers.common["Authorization"] = "Bearer " + token;
     }
@@ -34,14 +34,14 @@ spotifyApi.interceptors.response.use(
         err.message !== "Network Error"
       ) {
         originalRequest._retry = true;
-        const refreshToken = LocalStorageService.getRefreshToken();
+        const refreshToken = tokenLocalStorageService.getRefreshToken();
         await axios
           .get("/auth/refresh_token", {
             params: { refresh_token: refreshToken },
           })
           .then((res) => {
             if (res.status === 200) {
-              LocalStorageService.setAccessToken(res.data);
+              tokenLocalStorageService.setAccessToken(res.data);
             }
           })
           .catch((err) => console.log(err));

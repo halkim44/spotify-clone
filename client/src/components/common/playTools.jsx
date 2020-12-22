@@ -11,6 +11,7 @@ const Container = styled.div`
   > button:first-of-type {
     margin-right: 24px;
   }
+  margin-bottom: 16px;
 `;
 const PlayBtnWrapper = styled.div`
   margin-right: 32px;

@@ -79,6 +79,36 @@ V
 /album
 /playlist
 
+## History
+
+BackForward btn disabled state
+
+- when no history
+- after user refresh the page
+
+back btn disabled
+
+- happen the first page when user visit when using the app
+- when user visit the page
+
+forward btn disabled
+
+- when user is visiting a new page
+- when user refreshed page
+
+## Features that i have to tests
+
+- check if user profile displayed all data
+- check if artist page display all data about artist
+- playlist page
+- album page
+- search page
+- home page
+- side bar
+- playlist display in sidebar
+- music player
+- navigation
+
 ## Epics
 
 1. as a User I want to be able to Login to my account so that I can listen to music and keep my preferences.

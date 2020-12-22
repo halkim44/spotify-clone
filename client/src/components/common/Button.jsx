@@ -70,7 +70,7 @@ export const Button = ({
         <a href={to}>
           <ButtonStyled
             {...rest}
-            isIcon
+            isIcon={isIcon}
             iconScale={iconScale}
             isActive={isActive}
             isDisabled={isDisabled}

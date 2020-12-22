@@ -57,7 +57,6 @@ export const PlaylistHeader = ({ data }) => {
   useEffect(() => {
     if (!isShouldUpdate.current) {
       setNameHeight(document.querySelector("#playlist-name").offsetHeight);
-      console.log(document.querySelector("#playlist-name").offsetHeight);
     }
   }, []);
 

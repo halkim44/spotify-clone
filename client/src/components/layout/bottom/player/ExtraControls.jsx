@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FiVolume1, FiVolume2, FiVolumeX } from "react-icons/fi";
 import { RiPlayList2Fill } from "react-icons/ri";
@@ -7,6 +7,8 @@ import { RiPlayList2Fill } from "react-icons/ri";
 import { Button } from "../../../common/Button";
 import { setPlayerVolume } from "../../../../services/spotify/player";
 import { Slider } from "../../../common/Slider";
+import { volumeLocalStorageService } from "../../../../utils/localStorageService";
+import { useUserDataState } from "../../../../contexts/userData";
 
 const Container = styled.div`
   display: flex;
@@ -24,31 +26,23 @@ const VolumeControl = styled.div`
 `;
 
 export const ExtraControls = ({ deviceId }) => {
-  const [volumePercentage, setVolumePercentage] = useState(100);
+  const userData = useUserDataState().data;
+  const [volumePercentage, setVolumePercentage] = useState(
+    userData ? volumeLocalStorageService.getVolume(userData.id) : 100
+  );
   const [volumeCache, setvolumeCache] = useState(volumePercentage);
-  const onMouseDownHandler = (e) => {
-    const elWidth = e.currentTarget.offsetWidth;
-    const point = e.screenX - e.currentTarget.offsetLeft;
 
-    const seekPosition = Math.floor(100 * (point / elWidth));
-    setVolumePercentage(seekPosition);
-    setPlayerVolume(seekPosition);
-  };
-
-  // useEffect(() => {
-  //   getAvailableDevices().then((res) => {
-  //     const { devices } = res.data;
-  //     let deviceInfo = devices.find((device) => device.id === deviceId);
-  //     if (deviceInfo) {
-  //       setVolumePercentage(deviceInfo.volume_percent);
-  //     }
-  //   });
-  // }, [deviceId]);
+  useEffect(() => {
+    if (!!userData) {
+      setPlayerVolume(volumeLocalStorageService.getVolume(userData.id));
+    }
+  }, [userData]);
 
   const toggleMute = () => {
     if (volumePercentage === 0) {
       setPlayerVolume(volumeCache);
-      setVolumePercentage(volumeCache);
+      volumeLocalStorageService.setVolume(userData.id, volumeCache);
+      setVolumePercentage(volumeLocalStorageService.getVolume(userData.id));
     } else {
       setvolumeCache(volumePercentage);
       setPlayerVolume(0);
@@ -60,13 +54,18 @@ export const ExtraControls = ({ deviceId }) => {
     <Container>
       <ViewPlaylist>
         <Link to="/queue">
-          <Button isIcon iconScale=".7">
+          <Button isIcon iconScale=".7" aria-label="queue">
             <RiPlayList2Fill />
           </Button>
         </Link>
       </ViewPlaylist>
       <VolumeControl>
-        <Button isIcon iconScale=".8" onClick={toggleMute}>
+        <Button
+          isIcon
+          iconScale=".8"
+          onClick={toggleMute}
+          aria-label="mute toggle"
+        >
           {volumePercentage === 0 ? (
             <FiVolumeX />
           ) : volumePercentage < 50 ? (
@@ -75,10 +74,11 @@ export const ExtraControls = ({ deviceId }) => {
             <FiVolume2 />
           )}
         </Button>
+        {console.log("Delete")}
         <Slider
           progress={volumePercentage}
-          mouseDown={onMouseDownHandler}
           endCallback={(perc) => {
+            volumeLocalStorageService.setVolume(userData.id, perc);
             setPlayerVolume(perc);
           }}
           dragCalback={(perc) => {

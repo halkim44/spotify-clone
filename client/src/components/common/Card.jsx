@@ -9,10 +9,10 @@ import { PlaceHolderImg } from "./PlaceHolderImg";
 const Container = styled.div`
   padding: 16px;
   background: #181818;
-  height: 284px;
   position: relative;
   transition: background-color 0.3s ease;
   border-radius: 4px;
+  min-height: 260px;
   &:hover {
     background-color: #282828;
   }
@@ -41,12 +41,12 @@ const ImgWrapper = styled.div`
   left: 0;
   right: 0;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
 
   ${({ isArtist }) =>
     isArtist === "artist" &&
     `
 border-radius: 100%;
-overflow: hidden;
 `}
   > * {
     width: 100%;
@@ -116,7 +116,7 @@ const LinkWrapper = styled.div`
     bottom: 0;
   }
 `;
-export const Card = ({ data, hideSubs }) => {
+export const Card = ({ data, hideSubs = false, onClickCallback }) => {
   const capitalize = (str) =>
     str.replace(/\w\S*/g, (w) => w.replace(/^\w/, (c) => c.toUpperCase()));
   const { type, owner } = data;
@@ -136,7 +136,7 @@ export const Card = ({ data, hideSubs }) => {
   }
   return (
     <Container>
-      <LinkWrapper>
+      <LinkWrapper onClick={onClickCallback}>
         <Link to={`/${type}/${data.id}`} />
       </LinkWrapper>
 
@@ -146,7 +146,12 @@ export const Card = ({ data, hideSubs }) => {
           {!data.images.length ? (
             <PlaceHolderImg type={data.type} />
           ) : (
-            <img src={data.images[0].url} alt={data.name} />
+            <img
+              src={
+                data.images.length > 1 ? data.images[0].url : data.images[0].url
+              }
+              alt={data.name}
+            />
           )}
         </ImgWrapper>
         <PlayBtnWrapper className="play-button-hover">
@@ -156,13 +161,15 @@ export const Card = ({ data, hideSubs }) => {
 
       <TextContent>
         <Name>{data.name}</Name>
-        <Subtitle>
-          {type === "album" ? (
-            <CommafyArtist artistArray={data.artists} />
-          ) : (
-            !hideSubs && <span>{subText}</span>
-          )}
-        </Subtitle>
+        {!hideSubs && (
+          <Subtitle>
+            {type === "album" ? (
+              <CommafyArtist artistArray={data.artists} />
+            ) : (
+              <span>{subText}</span>
+            )}
+          </Subtitle>
+        )}
       </TextContent>
     </Container>
   );

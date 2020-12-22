@@ -8,6 +8,7 @@ import {
 } from "react-icons/md";
 import { BiShuffle } from "react-icons/bi";
 import { IoIosRepeat } from "react-icons/io";
+
 import {
   next,
   pause,
@@ -99,6 +100,7 @@ export const Controls = ({
             iconScale={0.74}
             isActive={isShuffled}
             isIcon
+            aria-label="shuffle"
           >
             <BiShuffle />
           </Button>
@@ -110,6 +112,7 @@ export const Controls = ({
             onClick={() => !!prevTracks.length && previous()}
             isDisabled={!prevTracks.length}
             isIcon
+            aria-label="previous"
           >
             <MdSkipPrevious />
           </Button>
@@ -118,11 +121,21 @@ export const Controls = ({
         {/* PLAY PAUSE */}
         <CircleBtnWrapper>
           {isPaused ? (
-            <Button className="play-pause-btn" onClick={() => play()} isIcon>
+            <Button
+              className="play-pause-btn"
+              onClick={() => play()}
+              isIcon
+              aria-label="play"
+            >
               <MdPlayArrow />
             </Button>
           ) : (
-            <Button className="play-pause-btn" onClick={pause} isIcon>
+            <Button
+              className="play-pause-btn"
+              onClick={pause}
+              isIcon
+              aria-label="pause"
+            >
               <MdPause />
             </Button>
           )}
@@ -134,6 +147,7 @@ export const Controls = ({
             onClick={() => !!nextTracks.length && next()}
             isIcon
             isDisabled={!nextTracks.length}
+            aria-label="next"
           >
             <MdSkipNext />
           </Button>
@@ -141,7 +155,11 @@ export const Controls = ({
 
         {/* REPEAT */}
         <RepeatBtnWrapper mode={repeatMode}>
-          <Button onClick={() => repeat(repeatMode + 1)} isIcon>
+          <Button
+            onClick={() => repeat(repeatMode + 1)}
+            isIcon
+            aria-label="repeat"
+          >
             <IoIosRepeat />
           </Button>
         </RepeatBtnWrapper>
