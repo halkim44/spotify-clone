@@ -11,6 +11,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
     "start-watch": "nodemon server.js",
+    "heroku-postbuild": "cd client && yarn && yarn run build",
     "dev": "concurrently --kill-others-on-fail \"yarn run start-watch\" \"cd client && yarn start\""
   },
   "keywords": [],
