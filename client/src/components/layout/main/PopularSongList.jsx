@@ -33,7 +33,14 @@ export const PopularSongList = ({ artistId }) => {
       <ul>
         {topTracks.map(
           (track, i) =>
-            i < numOfListToDisplay && <List trackData={track} num={i} key={i} />
+            i < numOfListToDisplay && (
+              <List
+                trackData={track}
+                num={i}
+                key={i}
+                testId="popular-track-list-item"
+              />
+            )
         )}
       </ul>
       <SeeMoreBtn
@@ -45,6 +52,7 @@ export const PopularSongList = ({ artistId }) => {
           }
         }}
         aria-label="see more popular songs"
+        data-testid="see-more-button"
       >
         {numOfListToDisplay === 5 ? "SEE MORE" : "SHOW LESS"}
       </SeeMoreBtn>

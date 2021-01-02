@@ -1,12 +1,12 @@
 import styled from "@emotion/styled";
-import React, { useState } from "react";
-import { SdkIntializer } from "./player/SdkInitializer";
+import React, { useEffect, useState } from "react";
 import { transferUsersPlayback } from "../../../services/spotify/player";
 import { CurrentPlayingInfo } from "./player/CurrentPlayingInfo";
 import { Controls } from "./player/Controls";
 import { PlaybackBar } from "./player/PlaybackBar";
 import { ExtraControls } from "./player/ExtraControls";
 import { tokenLocalStorageService } from "../../../utils/localStorageService";
+import { SDKInitializer } from "../../../services/spotify/SDKInitializer";
 
 const Container = styled.div`
   position: fixed;
@@ -58,20 +58,21 @@ export const BottomContainer = () => {
   };
 
   const currentTrack = playback.track_window.current_track;
+
+  useEffect(() => {
+    if (!sdkIsAlreadyInit) {
+      SDKInitializer(
+        tokenLocalStorageService.getAccessToken(),
+        setID,
+        (state) => {
+          setPlayback((prev) => ({ ...prev, ...state }));
+          setsdkIsAlreadyInit(true);
+        }
+      );
+    }
+  }, [sdkIsAlreadyInit]);
   return (
     <>
-      {console.log(playback)}
-      {!sdkIsAlreadyInit && (
-        <SdkIntializer
-          token={tokenLocalStorageService.getAccessToken()}
-          setId={setID}
-          onPlayerStateChange={(state) => {
-            setPlayback({ ...playback, ...state });
-            setsdkIsAlreadyInit(true);
-          }}
-        />
-      )}
-
       <Container>
         <Left>
           {!!currentTrack && (

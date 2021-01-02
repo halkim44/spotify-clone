@@ -23,19 +23,29 @@ export const getAllGenerator = (
 
 function* dataIterator(getter, offset = 0, limit = 50) {
   while (true) {
+    let before = null;
+    let isUsingBeforeOffset = false;
     yield getter(offset, limit).then((res) => {
       const { data } = res;
 
+      if (data.hasOwnProperty("cursors")) {
+        isUsingBeforeOffset = true;
+        if (!!data.cursors) {
+          before = data.cursors.before;
+        }
+      }
       if (!!data.items.length) {
-        console.log(data.items);
-
         return data.items;
       } else {
         return null;
       }
     });
-
-    offset += limit;
+    // because some api use "before" and not offset
+    if (isUsingBeforeOffset) {
+      offset = before;
+    } else {
+      offset += limit;
+    }
   }
 }
 

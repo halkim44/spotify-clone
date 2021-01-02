@@ -9,11 +9,17 @@ export const SectionsOfCards = ({ title, artistID, seeAllLink }) => {
     getArtistAlbums(artistID, "album,single,compilation", "MY", 8).then((res) =>
       setData(res.data.items)
     );
-  }, []);
+  }, [artistID]);
   return (
     <CardGroup title={title} seeAllLink={seeAllLink}>
       {data.map((datum, i) => (
-        <Card data={datum} type={datum.type} key={i} />
+        <Card
+          data={datum}
+          type={datum.type}
+          key={i}
+          subtitleTypes={["releaseYear", "typeName"]}
+          testId="discography-album-item"
+        />
       ))}
     </CardGroup>
   );

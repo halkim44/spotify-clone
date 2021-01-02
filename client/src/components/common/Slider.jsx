@@ -29,7 +29,7 @@ const ProgressBar = styled.div`
   ${({ progress }) => `width: ${progress}%`}
 `;
 
-export const Slider = ({ progress, endCallback, dragCalback }) => {
+export const Slider = ({ progress, endCallback, dragCalback, testId }) => {
   const [sliderState, setSliderState] = useState({ progress });
 
   const isDrag = useRef(false);
@@ -83,6 +83,7 @@ export const Slider = ({ progress, endCallback, dragCalback }) => {
         document.addEventListener("mousemove", dragStartHandler, false);
       }}
       ref={currentElement}
+      data-testid={testId}
     >
       <ProgressBarBg>
         <ProgressBar progress={sliderState.progress} className="progress-bar" />

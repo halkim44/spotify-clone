@@ -1,3 +1,5 @@
+import { spotifyApi } from "../api/spotify";
+
 export const getRecentPlayedUri = (callback, api, path, limit) => {
   api
     .get(path, {
@@ -19,7 +21,18 @@ export const getRecentPlayedUri = (callback, api, path, limit) => {
       callback(uriList);
     });
 };
+export function getDataFromUris(uris, callback) {
+  const queries = uris.map((item) => {
+    const params = item.split(":");
+    return () => spotifyApi.get(`/${params[1]}s/${params[2]}`);
+  });
 
+  Promise.all(queries.map((fn) => fn()))
+    .then((res) => {
+      callback(res);
+    })
+    .catch((err) => console.log(err));
+}
 export function populateUriArray(arr, callback, api) {
   const queries = arr.map((item) => {
     const params = item.split(":");

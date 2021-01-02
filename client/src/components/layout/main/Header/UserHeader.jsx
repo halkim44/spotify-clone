@@ -40,7 +40,6 @@ const Container = styled.div`
 `;
 export const UserHeader = ({ data }) => {
   const subtitles = [];
-  console.log(data);
   if (!!data.playlists.length) {
     subtitles.push(
       data.playlists.length +

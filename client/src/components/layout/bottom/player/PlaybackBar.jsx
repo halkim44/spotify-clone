@@ -59,6 +59,7 @@ export const PlaybackBar = ({
         endCallback={updatePlaybackPosition}
         dragCalback={updateProgressTime}
         key={trackDuration}
+        testId="playback-position-slider"
       />
 
       <span>{getMMSSfromMilisec(trackDuration)}</span>

@@ -16,7 +16,6 @@ const Container = styled.div`
     display: flex;
   }
 `;
-const ViewPlaylist = styled.div``;
 const VolumeControl = styled.div`
   width: 125px;
   align-items: center;
@@ -52,13 +51,13 @@ export const ExtraControls = ({ deviceId }) => {
 
   return (
     <Container>
-      <ViewPlaylist>
+      <div>
         <Link to="/queue">
           <Button isIcon iconScale=".7" aria-label="queue">
             <RiPlayList2Fill />
           </Button>
         </Link>
-      </ViewPlaylist>
+      </div>
       <VolumeControl>
         <Button
           isIcon
@@ -67,14 +66,13 @@ export const ExtraControls = ({ deviceId }) => {
           aria-label="mute toggle"
         >
           {volumePercentage === 0 ? (
-            <FiVolumeX />
+            <FiVolumeX data-testid="mute-icon" />
           ) : volumePercentage < 50 ? (
             <FiVolume1 />
           ) : (
             <FiVolume2 />
           )}
         </Button>
-        {console.log("Delete")}
         <Slider
           progress={volumePercentage}
           endCallback={(perc) => {

@@ -58,3 +58,12 @@ export const transferUsersPlayback = (device_ids, play = false) =>
     device_ids,
     play,
   });
+
+export const getRecentlyPlayed = (limit, before = null, after = null) =>
+  spotifyApi.get("me/player/recently-played", {
+    params: {
+      limit,
+      after,
+      before,
+    },
+  });

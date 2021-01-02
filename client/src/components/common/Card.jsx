@@ -84,6 +84,10 @@ const Subtitle = styled.div`
     position: relative;
     z-index: 4;
   }
+  > *:not(:first-of-type):before {
+    content: "•";
+    margin: 0px 4px;
+  }
 `;
 
 const PlayBtnWrapper = styled.div`
@@ -116,26 +120,54 @@ const LinkWrapper = styled.div`
     bottom: 0;
   }
 `;
-export const Card = ({ data, hideSubs = false, onClickCallback }) => {
+export const Card = ({
+  data,
+  onClickCallback,
+  testId,
+  showReleaseYear,
+  subtitleTypes = ["typeName"],
+}) => {
   const capitalize = (str) =>
     str.replace(/\w\S*/g, (w) => w.replace(/^\w/, (c) => c.toUpperCase()));
-  const { type, owner } = data;
+  const { type, owner, tracks } = data;
 
-  let subText = "";
-  switch (type) {
-    case "playlist":
-      if (!!data.description.length) {
-        subText = data.description;
+  const subs = {
+    artists: (key) => (
+      <span key={key}>
+        <CommafyArtist artistArray={data.artists} />
+      </span>
+    ),
+    releaseYear: (key) => (
+      <span key={key}>{data.release_date.split("-")[0]}</span>
+    ),
+    playlist: (key) => (
+      <span key={key}>
+        {!!data.description.length
+          ? data.description
+          : "By " + owner.display_name}
+      </span>
+    ),
+    typeName: getCapitalizedTypeName,
+  };
+
+  function getCapitalizedTypeName(key) {
+    let content;
+
+    if (type === "album" && data.album_type === "single") {
+      if (data.total_tracks >= 3) {
+        content = "EP";
       } else {
-        subText = "By " + owner.display_name;
+        content = capitalize(data.album_type);
       }
-      break;
-    default: {
-      subText = capitalize(type);
+    } else {
+      content = capitalize(type);
     }
+
+    return <span key={key}>{content}</span>;
   }
+
   return (
-    <Container>
+    <Container data-testid={testId}>
       <LinkWrapper onClick={onClickCallback}>
         <Link to={`/${type}/${data.id}`} />
       </LinkWrapper>
@@ -161,15 +193,9 @@ export const Card = ({ data, hideSubs = false, onClickCallback }) => {
 
       <TextContent>
         <Name>{data.name}</Name>
-        {!hideSubs && (
-          <Subtitle>
-            {type === "album" ? (
-              <CommafyArtist artistArray={data.artists} />
-            ) : (
-              <span>{subText}</span>
-            )}
-          </Subtitle>
-        )}
+        <Subtitle>
+          {subtitleTypes.map((subtitleType, i) => subs[subtitleType](i))}
+        </Subtitle>
       </TextContent>
     </Container>
   );

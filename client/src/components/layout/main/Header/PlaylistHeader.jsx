@@ -68,6 +68,7 @@ export const PlaylistHeader = ({ data }) => {
           alt={data.name + "'s profile pic"}
           height="100%"
           width="auto"
+          data-testid="playlist-cover-img"
         />
       </ProfileImg>
       <TextContent>

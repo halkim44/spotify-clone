@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
 import React from "react";
-import { ImSpotify } from "react-icons/im";
 import { Sidebar } from "./SideBar";
 import { PlaylistSidebar } from "./PlaylistsSidebar";
+import { useUserDataState } from "../../../contexts/__mocks__/userData";
 
 const Container = styled.div`
   position: fixed;
@@ -15,10 +15,13 @@ const Container = styled.div`
   flex-direction: column;
 `;
 export const LeftContainer = () => {
+  let { data } = useUserDataState();
+
   return (
     <Container>
       <Sidebar />
-      <PlaylistSidebar />
+
+      {!!data && <PlaylistSidebar />}
     </Container>
   );
 };

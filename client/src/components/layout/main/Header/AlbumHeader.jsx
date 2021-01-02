@@ -74,6 +74,7 @@ export const AlbumHeader = ({ data }) => {
           alt={data.display_name + "'s profile pic"}
           height="100%"
           width="auto"
+          data-testid="album-cover-img"
         />
       </ProfileImg>
       <TextContent>

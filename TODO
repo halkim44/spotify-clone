@@ -73,3 +73,20 @@ Fixings:
     ☐ e2e testing
     ☐ README UPDATE
     ☐ deploy to heroku
+
+
+Testing:
+  ✔ album page @done(20-12-26 14:42)
+  ✔ artist page @done(20-12-26 14:42)
+  ✘ Home Page @started(20-12-26 14:42) @cancelled(20-12-26 22:24) @wasted(7h42m5s)
+  ✔ Playlist Page @started(20-12-26 22:32) @done(20-12-27 11:38) @lasted(13h6m25s)
+  ✔ sidebar @done(20-12-27 12:18)
+  ✔ top container @done(20-12-27 17:24)
+  ☐ Library
+  ☐ bottom player
+  ☐ see alls
+  ✘ contexts @started(20-12-28 22:14) @cancelled(20-12-28 22:14) @wasted(36s)
+
+  E2e Testing:
+    ☐ User Login
+    ☐ Searching stuff

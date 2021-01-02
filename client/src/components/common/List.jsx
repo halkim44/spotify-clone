@@ -117,6 +117,7 @@ export const List = ({
   clickFunction,
   isMini, // when we need less item to show on the list
   showArtist,
+  testId,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -125,6 +126,7 @@ export const List = ({
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       isMini={isMini}
+      data-testid={testId}
     >
       {!clickFunction ? (
         <ClickSpace onClick={() => play(null, [trackData.uri])} />
@@ -151,7 +153,9 @@ export const List = ({
           </AlbumImgWrapper>
         )}
         <div>
-          <span className="List-track-name">{trackData.name}</span>
+          <span className="List-track-name" data-testid={testId + "-name"}>
+            {trackData.name}
+          </span>
           {(isMini || showArtist) && (
             <ArtistsContainer>
               <CommafyArtist artistArray={trackData.artists} />

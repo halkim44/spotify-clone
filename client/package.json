@@ -7,8 +7,9 @@
     "@emotion/styled": "^10.0.27",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
+    "@testing-library/user-event": "^12.6.0",
     "axios": "^0.21.0",
+    "history": "^5.0.0",
     "http-proxy-middleware": "^1.0.6",
     "is-empty": "^1.2.0",
     "react": "^17.0.1",
@@ -23,7 +24,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "test:coverage:unit": "react-scripts test --watchAll=false --env=jest-environment-jsdom-sixteen --coverage --testPathPattern=\"unit.test.js\" --verbose",
+    "test:coverage": "react-scripts test --coverage --watchAll=false",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -44,6 +45,23 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:8000",
-  "devDependencies": {}
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}",
+      "!src/*.js"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 90,
+        "functions": 90,
+        "lines": 90,
+        "statements": 90
+      }
+    },
+    "coverageReporters": [
+      "html",
+      "text"
+    ]
+  },
+  "proxy": "http://localhost:8000"
 }

@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 import { getAllGenerator } from "../../../services/generators";
 import { getCurrentUserPlaylists } from "../../../services/spotify/playlist";
-import { Card } from "../../common/Card";
 import { ScrollBar } from "../../common/ScrollBar";
 
 const Container = styled.div`
@@ -67,7 +66,6 @@ export const PlaylistSidebar = () => {
     if (id === "/") {
       return id === pathname;
     }
-    console.log(pathname);
     const re = new RegExp(id);
     return re.test(pathname);
   };
@@ -89,7 +87,9 @@ export const PlaylistSidebar = () => {
             {userPlaylists.map((playlist, i) => (
               <ListItem key={i} isAtive={isPathnameContainId(playlist.id)}>
                 <Link to={"/playlist/" + playlist.id}>
-                  <span>{playlist.name}</span>
+                  <span data-testid="playlist-side-nav-item">
+                    {playlist.name}
+                  </span>
                 </Link>
               </ListItem>
             ))}

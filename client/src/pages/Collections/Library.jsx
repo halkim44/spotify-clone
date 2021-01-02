@@ -1,16 +1,24 @@
 import styled from "@emotion/styled";
 import React from "react";
-import { Redirect, Route, Switch, useRouteMatch } from "react-router-dom";
+import {
+  Redirect,
+  Route,
+  Switch,
+  useLocation,
+  useRouteMatch,
+} from "react-router-dom";
 import { Contents } from "../../components/layout/main/Contents";
 import { AlbumLibrary } from "./AlbumLibrary";
 import { ArtistsLibrary } from "./ArtistsLibrary";
 import { PlaylistLibrary } from "./PlaylistLibrary";
+import { NoMatch } from "../NoMatch";
 
 const Container = styled.div`
   margin-top: 58px;
 `;
 export const Library = () => {
   const { url } = useRouteMatch();
+
   return (
     <Container>
       <Contents>
@@ -21,6 +29,7 @@ export const Library = () => {
           <Route path={url + "/playlists"} component={PlaylistLibrary} />
           <Route path={url + "/artists"} component={ArtistsLibrary} />
           <Route path={url + "/albums"} component={AlbumLibrary} />
+          <Route component={NoMatch} />
         </Switch>
       </Contents>
     </Container>

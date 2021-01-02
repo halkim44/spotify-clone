@@ -13,8 +13,8 @@ const Container = styled.div`
 `;
 export const Loading = () => {
   return (
-    <Container>
-      <div>Loading</div>
+    <Container data-testid="loading-page">
+      <div>Loading...</div>
     </Container>
   );
 };

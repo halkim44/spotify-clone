@@ -3,8 +3,8 @@ import React from "react";
 
 import { Route, Switch } from "react-router-dom";
 import { useUserDataState } from "../../../contexts/userData";
-import { Album } from "../../../pages/album";
-import { Artist } from "../../../pages/artist";
+import { Album } from "../../../pages/Album";
+import { Artist } from "../../../pages/Artist";
 import { User } from "../../../pages/User/User";
 import { NoMatch } from "../../../pages/NoMatch";
 import { Home } from "../../../pages/Home";

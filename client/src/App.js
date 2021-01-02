@@ -18,7 +18,7 @@ function App() {
           <TopContainer isUserAuthenticated={!!haveUserData.data} />
           <LeftContainer />
           <MainContent />
-          {/* <BottomContainer /> */}
+          <BottomContainer />
         </ManageData>
       </Container>
     </div>

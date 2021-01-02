@@ -24,29 +24,22 @@ export const User = () => {
     if (currentUserData.id === id) {
       setData(currentUserData);
     } else {
-      getUserData(id)
-        .then((res) => {
-          setData(res.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      getUserData(id).then((res) => {
+        setData(res.data);
+      });
     }
   }
   useEffect(() => {
     if (data && !data.following) {
-      getCurrentUserFollowed(8)
-        .then((res) => {
-          setData((prev) => ({
-            ...prev,
-            following: res.data.artists,
-          }));
-        })
-        .catch((err) => console.log(err));
+      getCurrentUserFollowed(8).then((res) => {
+        setData((prev) => ({
+          ...prev,
+          following: res.data.artists,
+        }));
+      });
     }
     getAllGenerator(
-      (offset, limit) =>
-        getCurrentUserPlaylists(limit, offset).catch((err) => console.log(err)),
+      (offset, limit) => getCurrentUserPlaylists(limit, offset),
       (dataCol) => {
         setData((prev) => ({
           ...prev,
@@ -61,19 +54,18 @@ export const User = () => {
     <div>
       {!!data.following && !!data.playlists && (
         <>
-          {console.log(data)}
           <Header>
             <UserHeader data={data} />
           </Header>
           <Contents>
-            {/* <CardGroup title="Public Playlist" seeAllLink={`${url}/playlists`}>
+            <CardGroup title="Public Playlists" seeAllLink={`${url}/playlists`}>
               {data.playlists.map(
                 (playlist, i) =>
                   i < 8 && (
                     <Card data={playlist} type="playlist" key={i} hideSubs />
                   )
               )}
-            </CardGroup> */}
+            </CardGroup>
             <CardGroup title="Following" seeAllLink={`${url}/following`}>
               {data.following.items.map((artist, i) => (
                 <Card data={artist} type="artist" key={i} />

@@ -27,3 +27,11 @@ export const getArtistTopTracks = (id, market) =>
 
 export const getRelatedArtists = (id) =>
   spotifyApi.get("/artists/" + id + "/related-artists");
+
+export const getUserTopArtists = (limit, offset = null) =>
+  spotifyApi.get("/me/top/artists", {
+    params: {
+      limit,
+      offset,
+    },
+  });

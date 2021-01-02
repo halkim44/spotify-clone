@@ -71,7 +71,6 @@ export const HistoryManager = () => {
   };
 
   const onClickForward = () => {
-    console.log(currentKeyIndex, keys.current);
     if (currentKeyIndex !== keys.current.length - 1 || keys.current.length) {
       goForward();
     }
@@ -85,9 +84,6 @@ export const HistoryManager = () => {
         isDisabled={currentKeyIndex === 0}
         aria-label="go back"
       >
-        {console.log("currentPosition", currentKeyIndex)}
-        {console.log(keys)}
-
         <IoIosArrowBack />
       </CircleButton>
       <CircleButton

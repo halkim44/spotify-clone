@@ -102,7 +102,7 @@ export const Sidebar = () => {
       <Link to="/">
         <LogoWrapper>
           <IconAndTextAligner>
-            <Logo>
+            <Logo data-testid="spotify-logo">
               <ImSpotify />
             </Logo>
             <LogoName>Spotify</LogoName>

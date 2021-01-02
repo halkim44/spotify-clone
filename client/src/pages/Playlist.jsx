@@ -85,6 +85,7 @@ export const Playlist = () => {
                 }
                 key={i}
                 showArtist
+                testId="playlist-track-list-item-name"
               />
             ))}
             {playlistData.tracks.items.length < playlistData.tracks.total && (
