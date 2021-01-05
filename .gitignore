@@ -276,3 +276,4 @@ client/coverage/lcov-report/src/utils/auth.js.html
 client/coverage/lcov-report/src/utils/axiosGlobalConfig.js.html
 client/coverage/lcov-report/src/utils/hash.js.html
 client/coverage/lcov-report/src/utils/index.html
+.env
