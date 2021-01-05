@@ -1,12 +1,6 @@
 import styled from "@emotion/styled";
 import React from "react";
-import {
-  Redirect,
-  Route,
-  Switch,
-  useLocation,
-  useRouteMatch,
-} from "react-router-dom";
+import { Redirect, Route, Switch, useRouteMatch } from "react-router-dom";
 import { Contents } from "../../components/layout/main/Contents";
 import { AlbumLibrary } from "./AlbumLibrary";
 import { ArtistsLibrary } from "./ArtistsLibrary";

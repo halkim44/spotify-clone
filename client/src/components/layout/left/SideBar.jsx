@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import React, { useCallback, useEffect, useState } from "react";
+import React from "react";
 import { ImSpotify } from "react-icons/im";
 import { VscHome } from "react-icons/vsc";
 import { IoIosSearch } from "react-icons/io";

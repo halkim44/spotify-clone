@@ -3,7 +3,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { CommafyArtist } from "./CommafyArtists";
 import { GreenRoundPlayBtn } from "./GreenRoundPlayBtn";
-import { GiPlagueDoctorProfile } from "react-icons/gi";
 import { PlaceHolderImg } from "./PlaceHolderImg";
 
 const Container = styled.div`
@@ -129,7 +128,7 @@ export const Card = ({
 }) => {
   const capitalize = (str) =>
     str.replace(/\w\S*/g, (w) => w.replace(/^\w/, (c) => c.toUpperCase()));
-  const { type, owner, tracks } = data;
+  const { type, owner } = data;
 
   const subs = {
     artists: (key) => (

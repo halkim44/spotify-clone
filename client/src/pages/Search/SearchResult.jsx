@@ -1,6 +1,5 @@
-import styled from "@emotion/styled";
 import React, { useEffect, useState } from "react";
-import { Link, useParams, useRouteMatch } from "react-router-dom";
+import { useParams, useRouteMatch } from "react-router-dom";
 import { Card } from "../../components/common/Card";
 import { CardGroup } from "../../components/common/CardGroup";
 import { List } from "../../components/common/List";
@@ -11,9 +10,6 @@ import { play } from "../../services/spotify/player";
 import { searchSpotify } from "../../services/spotify/Search";
 import { searchHistoryLocalStorageService } from "../../utils/localStorageService";
 
-const SongsHeader = styled.div`
-  display: flex;
-`;
 export const SearchResult = () => {
   const { query } = useParams();
   const { url } = useRouteMatch();

@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import React from "react";
-import { Link, useLocation, useRouteMatch } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Container = styled.div`
   margin-left: 100px;

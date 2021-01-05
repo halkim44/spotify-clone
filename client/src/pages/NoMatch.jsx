@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import React from "react";
-import { useLocation, useRouteMatch } from "react-router-dom";
 
 const Container = styled.div`
   background: linear-gradient(45deg, #8c1932, #ff6437 60%);
@@ -19,10 +18,6 @@ const Container = styled.div`
 `;
 
 export const NoMatch = () => {
-  const { url, path } = useRouteMatch();
-  const { pathname } = useLocation();
-
-  console.log(pathname);
   return (
     <Container>
       <p>Sorry, couldn't find that.</p>

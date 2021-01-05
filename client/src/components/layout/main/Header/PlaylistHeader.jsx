@@ -1,8 +1,5 @@
 import styled from "@emotion/styled";
 import React, { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
-import { getTotalLengthOfTracks } from "../../../../utils/getTotalLengthOfTracks";
-import { prettyMS } from "../../../../utils/prettyMS";
 import { Subititle } from "../../../common/Subtitle";
 
 const ProfileImg = styled.div`

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import React, { useEffect } from "react";
+import React from "react";
 import { useLocation } from "react-router-dom";
 import { Button } from "../../common/Button";
 import { CollectionsNav } from "./CollectionsNav";

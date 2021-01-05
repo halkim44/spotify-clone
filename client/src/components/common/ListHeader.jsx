@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import React, { useEffect, useRef, useState } from "react";
 
 const Container = styled.div`
   display: grid;
@@ -23,7 +22,6 @@ const Album = styled.div`
   text-align: left;
 `;
 
-const Filler = styled.div``;
 const TopIndicator = styled.div`
   margin: 0;
   margin-bottom: 20px;

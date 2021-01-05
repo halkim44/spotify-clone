@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 import React from "react";
 import { PlaceHolderImg } from "../../../common/PlaceHolderImg";
-import { Subititle } from "../../../common/Subtitle";
 
 const ProfileImg = styled.div`
   overflow: hidden;

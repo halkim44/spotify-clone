@@ -1,12 +1,6 @@
 import styled from "@emotion/styled";
 import React, { useEffect } from "react";
-import {
-  Route,
-  Switch,
-  useLocation,
-  useParams,
-  useRouteMatch,
-} from "react-router-dom";
+import { Route, Switch, useRouteMatch } from "react-router-dom";
 import { RecommendedSearch } from "./RecommendedSearch";
 import { SearchResult } from "./SearchResult";
 

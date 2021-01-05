@@ -39,25 +39,28 @@ export const Slider = ({ progress, endCallback, dragCalback, testId }) => {
     setSliderState({ progress });
   }, [progress]);
 
-  const dragStartHandler = useCallback((e) => {
-    if (isDrag.current) {
-      seekValue.current = Math.floor(
-        ((e.pageX - currentElement.current.offsetLeft) /
-          currentElement.current.offsetWidth) *
-          100
-      );
-      if (seekValue.current > 100) {
-        seekValue.current = 100;
-      }
-      if (seekValue.current < 0) {
-        seekValue.current = 0;
-      }
+  const dragStartHandler = useCallback(
+    (e) => {
+      if (isDrag.current) {
+        seekValue.current = Math.floor(
+          ((e.pageX - currentElement.current.offsetLeft) /
+            currentElement.current.offsetWidth) *
+            100
+        );
+        if (seekValue.current > 100) {
+          seekValue.current = 100;
+        }
+        if (seekValue.current < 0) {
+          seekValue.current = 0;
+        }
 
-      dragCalback && dragCalback(seekValue.current);
+        dragCalback && dragCalback(seekValue.current);
 
-      setSliderState({ progress: seekValue.current });
-    }
-  }, []);
+        setSliderState({ progress: seekValue.current });
+      }
+    },
+    [dragCalback]
+  );
 
   const dragEndHandler = useCallback(
     (e) => {

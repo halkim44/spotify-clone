@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styled from "@emotion/styled";
-import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { MdPlayArrow } from "react-icons/md";
 import { getMMSSfromMilisec } from "../../utils/spotifyHelper";
 import { play } from "../../services/spotify/player";
