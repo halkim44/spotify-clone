@@ -109,7 +109,6 @@ export const UserDropDown = () => {
         ref={pillRef}
       >
         <ButtonStyled aria-label="user options">
-          <Bitan />
           <Figure>
             <img src={userData.images[0].url} alt="" />
           </Figure>
